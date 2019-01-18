@@ -1,6 +1,6 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  var User = sequelize.define('User', {
+export default (sequelize, DataTypes) => {
+  let User = sequelize.define('User', {
     firstName: {
       type: DataTypes.STRING,
       validate: {

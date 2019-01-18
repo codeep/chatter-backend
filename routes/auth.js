@@ -1,13 +1,10 @@
-const models  = require('../models');
-const express = require('express');
-const router  = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import models from '../models'
+import express from 'express'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import config from '../config'
 
-router.get('/', (req, res) => {
-    console.log('get');
-    res.send('anything OK')
-});
+const router  = express.Router();
 
 router.post('/sign-up', (req,res) => {
     let { firstName, lastName, email, password, gender, birthDate } = req.body;
@@ -45,7 +42,7 @@ router.post('/sign-in', (req,res) => {
         if (user) {
             if(bcrypt.compareSync(password, user.password)) {
                 // generate token and send
-                let token = jwt.sign({ user: { id: user.id } }, 'supersecret', {
+                let token = jwt.sign({ user: { id: user.id } }, config.secret, {
                     expiresIn: "7d" // expires in 24 hours
                 });
                 
@@ -64,4 +61,4 @@ router.post('/sign-in', (req,res) => {
    })
 })
 
-module.exports = router;
+export default router
