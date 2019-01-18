@@ -6,9 +6,11 @@ import Sequelize from 'sequelize'
 
 const basename  = path.basename(__filename);
 const env       = process.env.NODE_ENV || 'development';
-import config from (__dirname + '/../config/config.js')[env];
+import configs from '../config/config.js'
 
-let db        = {};
+const config = configs[env]
+
+let db = {};
 
 if (config.use_env_variable) {
   let sequelize = new Sequelize(process.env[config.use_env_variable], config);
