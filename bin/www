@@ -4,10 +4,10 @@
  * Module dependencies.
  */
 
-const app = require('../app')
-const debug = require('debug')('express-sequelize')
-const http = require('http')
-const models = require('../models')
+import app from '../app'
+import debug from ('debug')('express-sequelize')
+import http from 'http'
+import models from '../models'
 
 /**
  * Get port from environment and store in Express.
